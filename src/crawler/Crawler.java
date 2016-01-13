@@ -6,14 +6,14 @@ import java.io.*;
 import java.lang.*;
 
 /**
- * 
- * @author jackanderson
  * This program takes a url as a command line argument,
  * then crawls the associated website for emails.
  * It checks all accessible webpages and returns a list
  * of the returned emails to the user.
  * The work of actually reading the webpages will be done
  * by a second class called "Reader.java"
+ * @author jackanderson
+ * 
  */
 public class Crawler {
 	public static void main(String[] args) {
@@ -34,11 +34,14 @@ public class Crawler {
 			System.err.println("Usage: java Crawler [URL]");
 		}*/
 		String currentUrl = args[0];
+		Reader reader;
 		do{
-			Reader reader = new Reader(currentUrl);
-			reader.crawl();
-			emailsFound.addAll(reader.emailsFound);
-			pagesToVisit.addAll(reader.links);
+			if(currentUrl.contains(args[0])){
+				reader = new Reader(currentUrl);
+				reader.crawl();
+				emailsFound.addAll(reader.emailsFound);
+				pagesToVisit.addAll(reader.links);
+			}
 			//we check our list for pages we haven't visited yet
 			do{
 				currentUrl = pagesToVisit.remove(0);

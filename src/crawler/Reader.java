@@ -10,10 +10,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * 
- * @author jackanderson
  * This class will visit a URL designated by the Crawler,
  * and check it for email addresses as well as hyperlinks.
+ * @author jackanderson
+ * 
  */
 
 public class Reader {
@@ -32,7 +32,7 @@ public class Reader {
 			Connection connection = Jsoup.connect(url);
 			Document htmlDocument = connection.get();
 			this.htmlDocument = htmlDocument;
-			Elements linksOnPage = htmlDocument.select("a[href]");
+			Elements linksOnPage = htmlDocument.select("[href]");
 			for(Element link : linksOnPage){
 				this.links.add(link.absUrl("href"));
 			}
